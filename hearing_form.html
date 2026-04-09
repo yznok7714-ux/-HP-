@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ヒヤリングシート｜東栄建設株式会社</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #1D9E75;
+    --green-dark: #085041;
+    --green-light: #E1F5EE;
+    --green-mid: #0F6E56;
+    --text: #1a1a18;
+    --text-sub: #5a5a57;
+    --text-hint: #999994;
+    --border: #d8d8d4;
+    --bg: #f8f7f4;
+    --white: #ffffff;
+    --req: #993C1D;
+    --req-bg: #FAECE7;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* Hero */
+  .hero {
+    background: var(--green-dark);
+    padding: 48px 24px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 30px,
+      rgba(255,255,255,0.015) 30px,
+      rgba(255,255,255,0.015) 60px
+    );
+  }
+  .hero-label {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: #9FE1CB;
+    border: 1px solid #9FE1CB;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-family: 'Shippori Mincho', serif;
+    font-size: clamp(20px, 5vw, 28px);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+  .hero p {
+    font-size: 13px;
+    color: #9FE1CB;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  /* Company info strip */
+  .company-strip {
+    background: var(--green);
+    padding: 12px 24px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.85);
+    text-align: center;
+    letter-spacing: 0.03em;
+  }
+
+  /* Progress bar */
+  .progress-bar {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 24px;
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .progress-step {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--text-hint);
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  .progress-step:hover { color: var(--green); }
+  .progress-step.active { color: var(--green); font-weight: 500; }
+  .prog-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--border);
+    transition: background 0.2s;
+  }
+  .progress-step.active .prog-dot { background: var(--green); }
+  .prog-sep { color: var(--border); font-size: 10px; }
+
+  /* Main layout */
+  .main { max-width: 680px; margin: 0 auto; padding: 32px 16px 80px; }
+
+  /* Section */
+  .section {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+  .section:hover { box-shadow: 0 2px 16px rgba(0,0,0,0.06); }
+  .section-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 24px 16px;
+    border-bottom: 1px solid #f0f0ec;
+  }
+  .sec-num {
+    width: 32px; height: 32px;
+    background: var(--green);
+    color: white;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700;
+    flex-shrink: 0;
+  }
+  .sec-title {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .section-body { padding: 20px 24px; }
+
+  /* Question */
+  .q-block { margin-bottom: 28px; }
+  .q-block:last-child { margin-bottom: 0; }
+  .q-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .req-badge {
+    font-size: 10px;
+    background: var(--req-bg);
+    color: var(--req);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+  }
+  .opt-badge {
+    font-size: 10px;
+    background: var(--green-light);
+    color: var(--green-dark);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+  .q-hint {
+    font-size: 12px;
+    color: var(--text-hint);
+    margin-bottom: 12px;
+  }
+
+  /* Chip options */
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .chip {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: 40px;
+    font-size: 13px;
+    color: var(--text-sub);
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+    background: var(--white);
+  }
+  .chip:hover {
+    border-color: var(--green);
+    color: var(--green-dark);
+    background: var(--green-light);
+  }
+  .chip.selected {
+    border-color: var(--green);
+    background: var(--green-light);
+    color: var(--green-dark);
+    font-weight: 500;
+  }
+  .chip-check {
+    width: 16px; height: 16px;
+    border: 1.5px solid var(--border);
+    border-radius: 4px;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s;
+    background: white;
+  }
+  .chip.selected .chip-check {
+    background: var(--green);
+    border-color: var(--green);
+  }
+  .chip-check::after {
+    content: '';
+    width: 4px; height: 7px;
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
+    transform: rotate(45deg) translate(-1px, -1px);
+    opacity: 0;
+    transition: opacity 0.1s;
+  }
+  .chip.selected .chip-check::after { opacity: 1; }
+
+  /* Radio chips */
+  .chip-radio {
+    width: 16px; height: 16px;
+    border: 1.5px solid var(--border);
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s;
+    background: white;
+  }
+  .chip.selected .chip-radio {
+    border-color: var(--green);
+  }
+  .chip-radio::after {
+    content: '';
+    width: 7px; height: 7px;
+    background: var(--green);
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.1s;
+  }
+  .chip.selected .chip-radio::after { opacity: 1; }
+
+  /* Color chips */
+  .color-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+  .color-chip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: transform 0.15s;
+  }
+  .color-chip:hover { transform: translateY(-2px); }
+  .color-swatch {
+    width: 56px; height: 42px;
+    border-radius: 10px;
+    border: 2.5px solid transparent;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .color-chip.selected .color-swatch {
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px var(--green-light);
+  }
+  .color-chip-label {
+    font-size: 11px;
+    color: var(--text-sub);
+    text-align: center;
+    transition: color 0.15s;
+  }
+  .color-chip.selected .color-chip-label { color: var(--green-dark); font-weight: 500; }
+
+  /* Rank inputs */
+  .rank-list { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
+  .rank-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .rank-badge {
+    width: 28px; height: 28px;
+    background: var(--green-light);
+    color: var(--green-dark);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700;
+    flex-shrink: 0;
+  }
+  .rank-badge.gold { background: #FEF3C7; color: #92400E; }
+  .rank-badge.silver { background: #F1F5F9; color: #475569; }
+  .rank-badge.bronze { background: #FEF3C7; color: #78350F; }
+  .rank-input {
+    flex: 1;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 13px;
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    outline: none;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .rank-input:focus {
+    border-color: var(--green);
+    background: var(--white);
+  }
+  .rank-input::placeholder { color: var(--text-hint); }
+
+  /* Textarea */
+  .q-textarea {
+    width: 100%;
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 13px;
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    resize: vertical;
+    min-height: 80px;
+    outline: none;
+    transition: border-color 0.15s, background 0.15s;
+    margin-top: 10px;
+  }
+  .q-textarea:focus { border-color: var(--green); background: var(--white); }
+  .q-textarea::placeholder { color: var(--text-hint); }
+
+  /* Submit */
+  .submit-area {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .submit-note { font-size: 13px; color: var(--text-sub); margin-bottom: 18px; line-height: 1.7; }
+  .submit-btn {
+    display: inline-block;
+    background: var(--green);
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: 'Noto Sans JP', sans-serif;
+    padding: 14px 48px;
+    border-radius: 40px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    letter-spacing: 0.05em;
+  }
+  .submit-btn:hover { background: var(--green-mid); }
+  .submit-btn:active { transform: scale(0.97); }
+
+  /* Result modal */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal-overlay.show { display: flex; }
+  .modal {
+    background: white;
+    border-radius: 20px;
+    padding: 36px 28px;
+    max-width: 480px;
+    width: 100%;
+    text-align: center;
+  }
+  .modal-icon {
+    width: 56px; height: 56px;
+    background: var(--green-light);
+    border-radius: 50%;
+    margin: 0 auto 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+  }
+  .modal h2 { font-size: 20px; font-weight: 700; margin-bottom: 10px; color: var(--text); }
+  .modal p { font-size: 13px; color: var(--text-sub); margin-bottom: 24px; line-height: 1.8; }
+  .modal-result {
+    background: var(--bg);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: left;
+    font-size: 12px;
+    color: var(--text-sub);
+    line-height: 2;
+    margin-bottom: 20px;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+  .modal-close {
+    background: var(--green);
+    color: white;
+    border: none;
+    padding: 10px 28px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+
+  /* Divider within section */
+  .q-divider { border: none; border-top: 1px solid #f0f0ec; margin: 24px 0; }
+
+  @media (max-width: 480px) {
+    .hero { padding: 36px 16px 30px; }
+    .section-body { padding: 16px; }
+    .section-head { padding: 16px; }
+    .chip { padding: 8px 13px; font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-label">WEBSITE RENEWAL</div>
+  <h1>ウェブサイト リニューアル<br>ヒヤリングシート</h1>
+  <p>チェックをタップ・クリックして選んでください。<br>記入欄はお気軽にどうぞ！</p>
+</div>
+<div class="company-strip">
+  東栄建設株式会社｜群馬県前橋市｜創業：昭和52年｜住宅・マンション・テナントビルの新築・増改築
+</div>
+
+<div class="progress-bar">
+  <div class="progress-step active" onclick="scrollToSection('s1')"><div class="prog-dot"></div>目的・ゴール</div>
+  <div class="prog-sep">›</div>
+  <div class="progress-step" onclick="scrollToSection('s2')"><div class="prog-dot"></div>デザイン</div>
+  <div class="prog-sep">›</div>
+  <div class="progress-step" onclick="scrollToSection('s3')"><div class="prog-dot"></div>コンテンツ</div>
+  <div class="prog-sep">›</div>
+  <div class="progress-step" onclick="scrollToSection('s4')"><div class="prog-dot"></div>強み</div>
+  <div class="prog-sep">›</div>
+  <div class="progress-step" onclick="scrollToSection('s5')"><div class="prog-dot"></div>施工事例</div>
+  <div class="prog-sep">›</div>
+  <div class="progress-step" onclick="scrollToSection('s6')"><div class="prog-dot"></div>その他</div>
+</div>
+
+<div class="main">
+
+  <!-- Section 1 -->
+  <div class="section" id="s1">
+    <div class="section-head">
+      <div class="sec-num">1</div>
+      <div class="sec-title">リニューアルの目的・ゴール</div>
+    </div>
+    <div class="section-body">
+      <div class="q-block">
+        <div class="q-label">リニューアルで一番達成したいことは？ <span class="req-badge">必須・複数可</span></div>
+        <div class="chips">
+          <div class="chip" onclick="toggleChip(this)"><div class="chip-check"></div>新規の問い合わせを増やしたい</div>
+          <div class="chip" onclick="toggleChip(this)"><div class="chip-check"></div>会社の信頼感・実績を伝えたい</div>
+          <div class="chip" onclick="toggleChip(this)"><div class="chip-check"></div>施工事例をもっと見せたい</div>
+          <div class="chip" onclick="toggleChip(this)"><div class="chip-check"></div>スマートフォンで見やすくしたい</div>
+          <div class="chip" onclick="toggleChip(this)"><div class="chip-check"></div>採用・求人に活用したい</div>
+          <div class="chip" onclick="toggleChip(this)"><div class="chip-check"></div>古くなったデザインを刷新したい</div>
+        </div>
+        <textarea class="q-textarea" placeholder="その他・補足があればご記入ください"></textarea>
+      </div>
+
+      <hr class="q-divider">
+
+      <div class="q-block">
+        <div class="q-label">メインのターゲット（誰に見てほしい？）<span class="req-badge">複数可</span></div>
+        <div class="chips">
+          <div class="chip" onclick="toggleChip(this)"><div class="chip-check"></div>戸建て新築を検討中の個人・ご家族</div>
+          <div class="chip" onclick="toggleChip(this)"><div class="chip-check"></div>リフォーム・増改築を考えている方</div>
+          <div class="chip" onclick="toggleChip(this)"><div class="chip-check"></div>アパート・マンションオーナー</div>
+          <div class="chip" onclick="toggleChip(this)"><div class="chip-check"></div>商業ビル・テナントビルの建築依頼主</div>
+          <div class="chip" onclick="toggleChip(this)"><div class="chip-check"></div>就職・転職希望者</div>
+          <div class="chip" onclick="toggleChip(this)"><div class="chip-check"></div>その他</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 2 -->
+  <div class="section" id="s2">
+    <div class="section-head">
+      <div class="sec-num">2</div>
+      <div class="sec-title">デザイン・雰囲気のご希望</div>
+    </div>
+    <div class="section-body">
+      <div class="q-block">
+        <div class="q-label">好みの雰囲気に近いものを選んでください <span class="req-badge">複数可</span></div>
+        <div class="chips">
+          <div class="chip" onclick="toggleChip(this)"><div class="chip-check"></div>シンプル・すっきり</div>
+          <div class="chip" onclick="toggleChip(this)"><div class="chip-check"></div>高級感・重厚感</div>
+          <div class="chip" onclick="toggleChip(this)"><div class="chip-check"></div>温かみ・木のぬくもり</div>
+          <div class="chip" onclick="toggleChip(this)"><div class="chip-check"></div>自然・エコ・ナチュラル</div>
+          <div class="chip" onclick="toggleChip(this)"><div class="chip-check"></div>明るく親しみやすい</div>
+          <div class="chip" onclick="toggleChip(this)"><div class="chip-check"></div>モダン・スタイリッシュ</div>
+          <div class="chip" onclick="toggleChip(this)"><div class="chip-check"></div>地元・地域密着感</div>
+          <div class="chip" onclick="toggleChip(this)"><div class="chip-check"></div>和風・日本らしさ</div>
+        </div>
+      </div>
+
+      <hr class="q-divider">
+
+      <div class="q-block">
+        <div class="q-label">メインカラーのご希望 <span class="opt-badge">1つ選択</span></div>
+        <div class="q-hint">現在のHPは緑系です。変更・継続どちらでも構いません。</div>
+        <div class="color-chips">
+          <div class="color-chip" onclick="selectColor(this)">
+            <div class="color-swatch" style="background:#2d7a2d;"></div>
+            <div class="color-chip-label">緑系<br>（現在）</div>
+          </div>
+          <div class="color-chip" onclick="selectColor(this)">
+            <div class="color-swatch" style="background:#8B6914;"></div>
+            <div class="color-chip-label">木材・<br>茶系</div>
+          </div>
+          <div class="color-chip" onclick="selectColor(this)">
+            <div class="color-swatch" style="background:#1a3a5c;"></div>
+            <div class="color-chip-label">紺・<br>青系</div>
+          </div>
+          <div class="color-chip" onclick="selectColor(this)">
+            <div class="color-swatch" style="background:#3a3a3a;"></div>
+            <div class="color-chip-label">黒・<br>グレー系</div>
+          </div>
+          <div class="color-chip" onclick="selectColor(this)">
+            <div class="color-swatch" style="background:#c0392b;"></div>
+            <div class="color-chip-label">赤・<br>朱系</div>
+          </div>
+          <div class="color-chip" onclick="selectColor(this)">
+            <div class="color-swatch" style="background:#999;"></div>
+            <div class="color-chip-label">おまかせ</div>
+          </div>
+        </div>
+        <textarea class="q-textarea" placeholder="こだわりのカラーや「このHPのような感じ」があればご記入ください"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 3 -->
+  <div class="section" id="s3">
+    <div class="section-head">
+      <div class="sec-num">3</div>
+      <div class="sec-title">掲載コンテンツ・ページ構成</div>
+    </div>
+    <div class="section-body">
+      <div class="q-block">
+        <div class="q-label">新しいHPに載せたいページ・コンテンツ <span class="req-badge">複数可</span></div>
+        <div class="chips">
+          <div class="chip" onclick="toggleChip(this)"><div class="chip-check"></div>トップページ</div>
+          <div class="chip" onclick="toggleChip(this)"><div class="chip-check"></div>会社概要・代表あいさつ</div>
+          <div class="chip" onclick="toggleChip(this)"><div class="chip-check"></div>事業内容・サービス紹介</div>
+          <div class="chip" onclick="toggleChip(this)"><div class="chip-check"></div>施工事例ギャラリー</div>
+          <div class="chip" onclick="toggleChip(this)"><div class="chip-check"></div>お客様の声</div>
+          <div class="chip" onclick="toggleChip(this)"><div class="chip-check"></div>スタッフ紹介</div>
+          <div class="chip" onclick="toggleChip(this)"><div class="chip-check"></div>採用・求人情報</div>
+          <div class="chip" onclick="toggleChip(this)"><div class="chip-check"></div>よくある質問（FAQ）</div>
+          <div class="chip" onclick="toggleChip(this)"><div class="chip-check"></div>ブログ・お知らせ</div>
+          <div class="chip" onclick="toggleChip(this)"><div class="chip-check"></div>アクセスマップ</div>
+          <div class="chip" onclick="toggleChip(this)"><div class="chip-check"></div>お問い合わせフォーム</div>
+          <div class="chip" onclick="toggleChip(this)"><div class="chip-check"></div>その他</div>
+        </div>
+        <textarea class="q-textarea" placeholder="特に力を入れたいページや「その他」があればご記入ください"></textarea>
+      </div>
+
+      <hr class="q-divider">
+
+      <div class="q-block">
+        <div class="q-label">お問い合わせ方法として掲載したいもの <span class="req-badge">複数可</span></div>
+        <div class="chips">
+          <div class="chip" onclick="toggleChip(this)"><div class="chip-check"></div>メールフォーム</div>
+          <div class="chip" onclick="toggleChip(this)"><div class="chip-check"></div>電話番号（タップで発信）</div>
+          <div class="chip" onclick="toggleChip(this)"><div class="chip-check"></div>LINEで問い合わせ</div>
+          <div class="chip" onclick="toggleChip(this)"><div class="chip-check"></div>来店予約フォーム</div>
+          <div class="chip" onclick="toggleChip(this)"><div class="chip-check"></div>Googleマップへのリンク</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 4 -->
+  <div class="section" id="s4">
+    <div class="section-head">
+      <div class="sec-num">4</div>
+      <div class="sec-title">会社の強み・伝えたいこと</div>
+    </div>
+    <div class="section-body">
+      <div class="q-block">
+        <div class="q-label">特にアピールしたい強みを、重要な順に3つまでご記入ください</div>
+        <div class="rank-list">
+          <div class="rank-row">
+            <div class="rank-badge gold">1</div>
+            <input class="rank-input" type="text" placeholder="例）創業47年以上の地元密着の実績">
+          </div>
+          <div class="rank-row">
+            <div class="rank-badge silver">2</div>
+            <input class="rank-input" type="text" placeholder="例）自然素材・無垢材を使った木の家づくり">
+          </div>
+          <div class="rank-row">
+            <div class="rank-badge bronze">3</div>
+            <input class="rank-input" type="text" placeholder="例）アフターフォロー・メンテナンスが充実">
+          </div>
+        </div>
+      </div>
+
+      <hr class="q-divider">
+
+      <div class="q-block">
+        <div class="q-label">現在のHPで引き続き活かしたい内容は？ <span class="req-badge">複数可</span></div>
+        <div class="chips">
+          <div class="chip" onclick="toggleChip(this)"><div class="chip-check"></div>会社の基本情報・沿革</div>
+          <div class="chip" onclick="toggleChip(this)"><div class="chip-check"></div>既存の施工事例写真</div>
+          <div class="chip" onclick="toggleChip(this)"><div class="chip-check"></div>アフターフォローの説明</div>
+          <div class="chip" onclick="toggleChip(this)"><div class="chip-check"></div>住宅瑕疵担保登録の説明</div>
+          <div class="chip" onclick="toggleChip(this)"><div class="chip-check"></div>現在のHP内容はほぼ一新したい</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 5 -->
+  <div class="section" id="s5">
+    <div class="section-head">
+      <div class="sec-num">5</div>
+      <div class="sec-title">施工事例について</div>
+    </div>
+    <div class="section-body">
+      <div class="q-block">
+        <div class="q-label">写真素材の状況 <span class="opt-badge">1つ選択</span></div>
+        <div class="chips">
+          <div class="chip radio-chip" onclick="selectRadio(this,'photo')"><div class="chip-radio"></div>写真はすでに用意できる</div>
+          <div class="chip radio-chip" onclick="selectRadio(this,'photo')"><div class="chip-radio"></div>写真はこれから撮影が必要</div>
+          <div class="chip radio-chip" onclick="selectRadio(this,'photo')"><div class="chip-radio"></div>まだわからない</div>
+        </div>
+      </div>
+
+      <hr class="q-divider">
+
+      <div class="q-block">
+        <div class="q-label">施工事例の見せ方 <span class="req-badge">複数可</span></div>
+        <div class="chips">
+          <div class="chip" onclick="toggleChip(this)"><div class="chip-check"></div>事例ごとに詳細ページを作りたい</div>
+          <div class="chip" onclick="toggleChip(this)"><div class="chip-check"></div>一覧（ギャラリー形式）のみでよい</div>
+          <div class="chip" onclick="toggleChip(this)"><div class="chip-check"></div>住宅・マンション等で種別分類したい</div>
+          <div class="chip" onclick="toggleChip(this)"><div class="chip-check"></div>おまかせ</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 6 -->
+  <div class="section" id="s6">
+    <div class="section-head">
+      <div class="sec-num">6</div>
+      <div class="sec-title">その他・ご要望</div>
+    </div>
+    <div class="section-body">
+      <div class="q-block">
+        <div class="q-label">現在のHPへの不満点、「こうしたい」というご希望など自由にご記入ください</div>
+        <textarea class="q-textarea" style="min-height:110px;" placeholder="例）スマホで見づらい／施工写真をもっと載せたい／地元のお客様に安心感を持ってもらいたい　など、なんでもどうぞ！"></textarea>
+      </div>
+
+      <hr class="q-divider">
+
+      <div class="q-block">
+        <div class="q-label">参考にしたいHPがあれば、URLを貼り付けてください <span class="opt-badge">任意・複数OK</span></div>
+        <textarea class="q-textarea" placeholder="例）https://www.○○○.co.jp　← こんな雰囲気が好き、など"></textarea>
+      </div>
+
+      <hr class="q-divider">
+
+      <div class="q-block">
+        <div class="q-label">競合他社のHPで「負けたくない」と感じるものはありますか？ <span class="opt-badge">任意</span></div>
+        <textarea class="q-textarea" placeholder="会社名やURLがあればご記入ください"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- Submit -->
+  <div class="submit-area">
+    <div class="submit-note">
+      ご回答ありがとうございます。<br>
+      「回答を送る」を押すと、回答内容をまとめてご確認いただけます。
+    </div>
+    <button class="submit-btn" onclick="showResult()">回答内容を確認する</button>
+  </div>
+
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-icon">✓</div>
+    <h2>ご回答ありがとうございます！</h2>
+    <p>以下の内容でヒヤリングシートが完成しました。<br>スクリーンショットを撮るか、内容をコピーしてお送りください。</p>
+    <div class="modal-result" id="result-text"></div>
+    <button class="modal-close" onclick="document.getElementById('modal').classList.remove('show')">閉じる</button>
+  </div>
+</div>
+
+<script>
+function toggleChip(el) {
+  el.classList.toggle('selected');
+}
+
+function selectColor(el) {
+  document.querySelectorAll('.color-chip').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function selectRadio(el, group) {
+  document.querySelectorAll('[onclick*="' + group + '"]').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function scrollToSection(id) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function showResult() {
+  const sections = [
+    { title: '1. リニューアルの目的・ゴール', id: 's1' },
+    { title: '2. デザイン・雰囲気', id: 's2' },
+    { title: '3. コンテンツ・ページ構成', id: 's3' },
+    { title: '4. 会社の強み', id: 's4' },
+    { title: '5. 施工事例', id: 's5' },
+    { title: '6. その他・ご要望', id: 's6' },
+  ];
+
+  let result = '';
+  sections.forEach(sec => {
+    const el = document.getElementById(sec.id);
+    result += '【' + sec.title + '】\n';
+
+    el.querySelectorAll('.q-block').forEach(qb => {
+      const label = qb.querySelector('.q-label');
+      if (!label) return;
+      const labelText = label.innerText.replace(/必須.*|複数可.*|任意.*|1つ選択.*/g, '').trim();
+      result += '▶ ' + labelText + '\n';
+
+      const selected = qb.querySelectorAll('.chip.selected');
+      selected.forEach(c => {
+        const t = c.innerText.trim();
+        result += '  ✓ ' + t + '\n';
+      });
+
+      const colorSelected = qb.querySelector('.color-chip.selected .color-chip-label');
+      if (colorSelected) result += '  ✓ ' + colorSelected.innerText.replace('\n', '') + '\n';
+
+      qb.querySelectorAll('input[type=text]').forEach(inp => {
+        if (inp.value.trim()) result += '  → ' + inp.value.trim() + '\n';
+      });
+      qb.querySelectorAll('textarea').forEach(ta => {
+        if (ta.value.trim()) result += '  → ' + ta.value.trim() + '\n';
+      });
+    });
+    result += '\n';
+  });
+
+  document.getElementById('result-text').innerText = result || '（まだ回答が入力されていません）';
+  document.getElementById('modal').classList.add('show');
+}
+</script>
+</body>
+</html>
